@@ -10,6 +10,7 @@ const yellowSwitch = document.getElementById('yellow-switch');
 const greenSwitch = document.getElementById('green-switch');
 const offSwitch = document.getElementById('off-switch');
 const onSwitch = document.getElementById('on-switch');
+const cycleSwitch = document.getElementById('cycle-switch'); ;// Define cyecle-switch
 //Add event listeners that listen for a button click
 redSwitch.addEventListener('click', () => {
     redLight.style.backgroundColor = 'red';
@@ -37,5 +38,30 @@ offSwitch.addEventListener('click', () => {
 
 });
 //Party Mode Button
+// Function to cycle through the lights automatically
+let currentLight = 'red';
+let interValId = null;
 
+function cycleLight(){
+    redLight.style.backgroundColor = '#444';
+    yellowLight.style.backgroundColor = '#444';
+    greenLight.style.backgroundColor = '#444';
+    if(currentLight === 'red'){
+        redLight.style.backgroundColor = 'red';
+        currentLight = 'yellow';
+    } else if(currentLight === 'yellow'){
+        yellowLight.style.backgroundColor = 'yellow';
+        currentLight = 'green';
+        }else{
+            greenLight.style.backgroundColor = 'green';
+            currentLight = 'red';
+        }
+
+
+        cycleSwitch.addEventListener('click', () =>{
+            if(interValId){
+                intervalid = setInterval(cycleLight, 1000);
+            }
+        }
+    )}
 //Turn all lights on and off at once with a single button
